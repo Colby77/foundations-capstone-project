@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='styles.css'>
+    <title>D&D character creator</title>
+</head>
+<body>
+    <header>
+        <div class ='heading'>
+            <h1>DungeonBuddy.com</h1>
+            <img id='logo' alt='wizard-icon' src='../icons8-wizard-64.png'>
+            <a id='account'>Account</a>
+        </div>
+        <div class='sub-heading'>
+            <nav>
+                <a class='nav-link'>Home</a>
+                <a class='nav-link'>Create Character</a>
+                <a class='nav-link'>Share</a>
+                <a class='nav-link'>Resources</a>
+                <a class='nav-link'>Contact Us</a>
+            </nav>
+        </div>
+    </header>
+    <br>
+
+    <h2 class='section-title'>Instructions</h2>
+    <section class='instructions'>
+        <br>
+        <div>
+        <p>
+            Welcome to the character creator! Making a character in D&D is quite simple
+            but a bit of a process for beginners. Be patient and if you need a little help
+            visit the 'Resources' tab above for extra guides. 
+        </p>
+        <p>
+            First, start by picking your character'
+            race and class.
+        </p>
+        <p> 
+            Then there are a couple options you can use for determining your characte's
+            attribute and skill scores. You will pick your character's background/backstory
+            at this step, too.
+        </p>
+        <p>
+            To wrap it up you will pick your character's alignment (like their moral compass),
+            starting equipment, starting spells (if any) and name.
+        </p>
+        </div><br>
+        <img id='build-pic 'alt='character-build' 
+        src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapertag.com%2Fwallpaper%2Fmiddle%2Fd%2F5%2Fc%2F125257-full-size-dnd-wallpaper-1920x1080-for-retina.jpg&f=1&nofb=1'>
+        
+    </section>
+    <section class='race-section'>
+        <h2>Race</h2>
+        <p>Select a race and sub-race if necessary</p>
+        <form>
+            <input type='radio' id='dragonborn-btn' name='race-option' value='dragonborn' checked>
+            <label for='dragonborn-btn'>Dragonborn</label><br>
+            <input type='radio' id='dwarf-btn' name='race-option' value='dwarf'>
+            <label for='dwarf-btn'>Dwarf</label><br>
+            <input type='radio' id='elf-btn' name='race-option' value='elf'>
+            <label for='elf-btn'>Elf</label><br>
+            <input type='radio' id='gnome-btn' name='race-option' value='gnome'>
+            <label for='gnome-btn'>Gnome</label><br>
+            <input type='radio' id='half-elf-btn' name='race-option' value='half-elf'>
+            <label for='half-elf-btn'>Half-Elf</label><br>
+            <input type='radio' id='half-orc-btn' name='race-option' value='half-orc'>
+            <label for='half-orc-btn'>Half-Orc</label><br>
+            <input type='radio' id='halfling-btn' name='race-option' value='halfling'>
+            <label for='halfling-btn'>Halfling</label><br>
+            <input type='radio' id='human-btn' name='race-option' value='human'>
+            <label for='human-btn'>Human</label><br>
+            <input type='radio' id='tiefling-btn' name='race-option' value='tiefling'>
+            <label for='tiefling-btn'>Tiefling</label><br>
+            <button type='submit'>Submit</button>
+        </form>
+    </section>
+    <section class='select-class'>
+        <h2>Class</h2>
+            <div class='class-option' id='barbarian'>
+                <h3>Barbarian</h3>
+            </div>
+            <div class='class-option' id='bard'>
+                <h3>Bard</h3>
+            
+            </div>
+            <div class='class-option' id='cleric'>
+                <h3>Cleric</h3>
+            </div>
+            <div class='class-option' id='druid'>
+                <h3>Druid</h3>
+            </div>
+            <div class='class-option' id='fighter'>
+                <h3>Fighter</h3>
+            </div>
+            <div class='class-option' id='monk'>
+                <h3>Monk</h3>
+            </div>
+            <div class='class-option' id='paladin'>
+                <h3>Paladin</h3>
+            </div>
+            <div class='class-option' id='ranger'>
+                <h3>Ranger</h3>
+            </div>
+            <div class='class-option' id='rogue'>
+                <h3>Rogue</h3>
+            </div>
+            <div class='class-option' id='sorcerer'>
+                <h3>Sorcerer</h3>
+            </div>
+            <div class='class-option' id='warlock'>
+                <h3>Warlock</h3>
+            </div>
+            <div class='class-option' id='wizard'>
+                <h3>Wizard</h3>
+            </div>
+            <select id='backgrounds'>
+                <option value='acolyte'>Acolyte</option>
+                <!-- <option value=''></option>
+                <option value=''></option>
+                <option value=''></option>
+                <option value=''></option>
+                <option value=''></option>
+                <option value=''></option>
+                <option value=''></option>
+                <option value=''></option>
+                <option value=''></option>
+                <option value=''></option>
+                <option value=''></option>
+                <option value=''></option>
+                <option value=''></option>
+                <option value=''></option>
+                <option value=''></option> -->
+
+                <!-- see week5/assessment-data to get seed data from database -->
+            </select>
+    </section>
+    <section class='get-attributes'>
+        <h2>Attributes and Skills</h2>
+            <h3>Strength</h3>
+            <h3>Dexterity</h3>
+            <h3>Constitution</h3>
+            <h3>Intelligence</h3>
+            <h3>Wisdom</h3>
+            <h3>Charisma</h3>
+            <div class='get-attributes'>
+                <button id='dice-roll'>Roll For Scores</button>
+
+            </div>
+    </section>
+    <section class='wrap-up'>
+        <h2>Wrap-Up</h2>
+        <div class='alignment'><h3>Alignment</h3></div>
+        <div class='equipment'><h3>Equipment</h3></div>
+        <div class='spells'><h3>Spells</h3></div>
+        <div class='name'>
+            <input type='text' placeholder="name">
+        </div>
+    </section>
+    <footer><h1>This is a footer</h1></footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src='create-char.js'></script>
+</body>
+</html>
+
+<!-- 
+    function check() {
+    document.getElementById("myCheck").checked = true;
+}
+ -->
