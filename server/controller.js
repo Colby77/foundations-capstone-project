@@ -1,3 +1,10 @@
+const { default: axios } = require("axios");
+const express = require('express');
+const cors = require('cors');
+const app = express();
+app.use(express.json());
+app.use(cors());
+
 module.exports = {
     diceRollScores: (req, res) => {
         let scores = []
@@ -13,5 +20,15 @@ module.exports = {
             scores.push(score)
         }
         res.status(200).send(scores)
+    },
+    getRaces: async (req, res) => {
+        const {data: response} = await axios.get('http://www.dnd5eapi.co/api/races')
+       console.log(response.results)
+      return response.results
+        // .then((response) => {
+        //     let {data} = response
+        //     console.log(response.data);
+        //     response.status(200).send(response.data);
+        // }).catch((err) => console.log(err))
     }
 }
