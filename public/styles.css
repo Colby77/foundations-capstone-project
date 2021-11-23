@@ -103,3 +103,31 @@ header {
     background-color: blueviolet;
     margin: 10px 15% 10px 15%;
 }
+
+/* /////////////////////////////////////////////// */
+
+.class-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#class-blocks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 10px 250px 10px 250px;
+}
+
+.class-option {
+    width: 200px;
+    height: 150px;
+    background-color: brown;
+    padding:10px;
+    margin: 20px 50px 20px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
