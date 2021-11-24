@@ -69,10 +69,29 @@ header {
     padding:10px;
     
 }
+#char-sheet-container {
+    border-style: solid;
+    width:275px;
+    position: sticky;
+    top: 50px;
+    margin:10px 20px 10px 85%;
+    z-index: 1;
+}
+.char-sheet {
+    padding:5px;
+    border-style: solid;
+    width:200px;
+    margin:10px;
+}
+
+#proficiencies {
+    height: 100px;
+
+}
 
 #build-pic {
     background-size: 200px;
-    background-color: blue;
+    /* background-color: blue; */
 }
 
 .section-title {

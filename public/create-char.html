@@ -52,7 +52,34 @@
         <img id='build-pic 'alt='character-build' 
         src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapertag.com%2Fwallpaper%2Fmiddle%2Fd%2F5%2Fc%2F125257-full-size-dnd-wallpaper-1920x1080-for-retina.jpg&f=1&nofb=1'>
         
+        
+        
     </section><br>
+    <form id='char-sheet-container'>
+        <h3 class='char-sheet'>Character Sheet</h3>
+        <label class = 'char-sheet'for='race-choice'>Race:</label>
+        <input class = 'char-sheet'type='text' id='race-choice' disabled><br>
+        <label class = 'char-sheet'for='class-choice'>Class:</label>
+        <input class = 'char-sheet'type='text' id='class-choice' disabled><br>
+        <label class = 'char-sheet'for='background-choice'>Background:</label>
+        <input class = 'char-sheet'type='text' id='background-choice' disabled><br>
+        <label class = 'char-sheet'for='proficiency-bonus'>Proficiency:</label>
+        <input class = 'char-sheet'type='number' id='proficiency-bonus' value='2' disabled><br>
+        <label class = 'char-sheet'for='cha-score'>Charisma:</label>
+        <input class = 'char-sheet'type='number' id='cha-score' disabled><br>
+        <label class = 'char-sheet'for='con-score'>Constitution:</label>
+        <input class = 'char-sheet'type='number' id='con-score' disabled><br>
+        <label class = 'char-sheet'for='dex-score'>Dexterity:</label>
+        <input class = 'char-sheet'type='number' id='dex-score' disabled><br>
+        <label class = 'char-sheet'for='int-score'>Intelligence:</label>
+        <input class = 'char-sheet'type='number' id='int-score' disabled><br>
+        <label class = 'char-sheet'for='str-score'>Strength:</label>
+        <input class = 'char-sheet'type='number' id='str-score' disabled><br>
+        <label class = 'char-sheet'for='wis-score'>Wisdom:</label>
+        <input class = 'char-sheet'type='number' id='wis-score' disabled><br>
+        <label class='char-sheet' for='proficiencies'>Proficiencies:</label>
+        <textarea class='char-sheet' id='proficiencies' rows='10' cols='10' disabled></textarea><br>
+    </form>
 
     <!-- example -->
     <!-- <form>
@@ -64,30 +91,6 @@
             // document.getElementById('example').value = 'This is an auto generated value'
         // }
          </script>
-
-    <form>
-        <h3>Character Sheet</h3>
-        <label for='race-choice'>Race:</label>
-        <input type='text' id='race-choice' disabled><br>
-        <label for='class-choice'>Class:</label>
-        <input type='text' id='class-choice' disabled><br>
-        <label for='background-choice'>Background:</label>
-        <input type='text' id='background-choice' disabled><br>
-        <label for='cha-score'>Charisma:</label>
-        <input type='number' id='cha-score' disabled><br>
-        <label for='con-score'>Constitution:</label>
-        <input type='number' id='con-score' disabled><br>
-        <label for='dex-score'>Dexterity:</label>
-        <input type='number' id='dex-score' disabled><br>
-        <label for='int-score'>Intelligence:</label>
-        <input type='number' id='int-score' disabled><br>
-        <label for='str-score'>Strength:</label>
-        <input type='number' id='str-score' disabled><br>
-        <label for='wis-score'>Wisdom:</label>
-        <input type='number' id='wis-score' disabled><br>
-
-
-    </form>
 
     <h2 class='section-title'>Race</h2><br>
     <section class='race-section'></section>
@@ -104,7 +107,6 @@
                 <option value='Entertainer'>Entertainer</option>
                 <option value='Noble'>Noble</option>
                 <option value='Hermit'>Hermit</option>
-
                 <!-- see week5/assessment-data to get seed data from database -->
             </select><br>
 
@@ -116,7 +118,7 @@
         
         <div class='attributes-section'>            
             <button id='dice-roll'>Roll For Scores</button>
-            <button id='skills-calc'>Calculate Ability Modifiers</button>
+            <!-- <button id='skills-calc'>Calculate Ability Modifiers</button> -->
         </div>
     </section>
     <h2 class='section-title'>Wrap-Up</h2><br>

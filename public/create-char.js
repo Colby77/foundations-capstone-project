@@ -9,6 +9,7 @@ let raceChoice = document.getElementById('race-choice')
 let classChoice = document.getElementById('class-choice')
 const backgroundChoice = document.getElementById('background-choice')
 const backgrounds = document.getElementById('backgrounds')
+const proficienciesList = document.getElementById('proficiencies')
 
 const chaScore = document.getElementById('cha-score')
 const conScore = document.getElementById('con-score')
@@ -16,6 +17,9 @@ const dexScore = document.getElementById('dex-score')
 const intScore = document.getElementById('int-score')
 const strScore = document.getElementById('str-score')
 const wisScore = document.getElementById('wis-score')
+
+let proficiencies = []
+proficienciesList.value = 'N/A'
 
 const getRaces = (req, res) => {
     axios.get('http://www.dnd5eapi.co/api/races')
@@ -84,6 +88,15 @@ const getAttributes = (req, res) => {
 }
 getAttributes()
 
+function addSkill(skill){
+    proficienciesList.value = ''
+    let proficiency = skill
+    if(proficiencies.includes(skill) === false){
+        proficiencies.push(skill)
+    }
+    proficienciesList.value = proficiencies
+    // return proficienciesList
+}
 
 
 const getSkills = (req, res) => {
@@ -95,18 +108,17 @@ const getSkills = (req, res) => {
             let skillBlock = document.createElement('div')
             skillBlock.classList.add('skill-block')
             skillBlock.innerHTML = 
-            `<input type='checkbox' id='${results[index].index}' value='${results[index].name}'
+            `<input type='checkbox' id='${results[index].index}' onclick="addSkill('${results[index].name}')">
+            
              <label for='${results[index].index}'>${results[index].name}</label><br>
             `
-            skillBlock.addEventListener('click', () => {
-                console.log(`${results[index].name}`)
-            })
             skillsSection.appendChild(skillBlock)
         })
-
     })
+    .catch((err) => console.log(err))
 }
 getSkills()
+
 
 // diceRollScores()
 diceRoll.addEventListener('click', () => {
