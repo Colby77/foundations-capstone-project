@@ -4,6 +4,8 @@ body {
     flex-direction: column;
     /* align-items: center;
     justify-content:space-evenly; */
+    /* margin-left:100px;
+    margin-right:100px; */
 }
 
 header {
@@ -130,4 +132,48 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+/* //////////////////////////////////////// */
+
+.get-scores {
+    display: flex;
+    align-items: center;
+    
+}
+
+.ability-block {
+    width: 60px;
+    height: 100px;
+    padding:10px;
+    background-color: crimson;
+    margin-top:10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left:100px;
+}
+
+#dice-roll {
+    margin-left:100px;
+}
+
+.att-score {
+    width:40px;
+    height:25px;
+    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.skills-section {
+    background-color: darkgreen;
+    width:150px;
+    /* height:500px; */
+    padding:10px;
+    margin-left:20px;
 }
