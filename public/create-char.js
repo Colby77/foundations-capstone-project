@@ -1,6 +1,3 @@
-
-
-
 let diceRoll = document.querySelector('#dice-roll');
 let raceBlocks = document.querySelector('.race-section');
 let testBtn = document.getElementById('test')
@@ -8,6 +5,15 @@ let classSection = document.getElementById('class-blocks')
 let attributeSection = document.querySelector('.attributes-section')
 let attributeSectionTest = document.querySelector('.attributes-section-test')
 let skillsSection = document.querySelector('.skills-section')
+let raceChoice = document.getElementById('race-choice')
+let classChoice = document.getElementById('class-choice')
+
+const chaScore = document.getElementById('cha-score')
+const conScore = document.getElementById('con-score')
+const dexScore = document.getElementById('dex-score')
+const intScore = document.getElementById('int-score')
+const strScore = document.getElementById('str-score')
+const wisScore = document.getElementById('wis-score')
 
 const getRaces = (req, res) => {
     axios.get('http://www.dnd5eapi.co/api/races')
@@ -21,6 +27,7 @@ const getRaces = (req, res) => {
             newRace.id = results[i].index
             newRace.addEventListener('click', () => {
                 console.log(`${newRace.id} clicked`)
+                raceChoice.value = `${results[i].name}`
             })
             raceBlocks.appendChild(newRace)
         }
@@ -40,7 +47,8 @@ const getClasses = (req, res) => {
             newClass.innerHTML = `<h3>${results[index].name}</h3>`
             newClass.id = results[index].index
             newClass.addEventListener('click', () => {
-                console.log(`${newClass.id} clicked`)
+                classChoice.value = `${results[index].name}`
+                // console.log(`${newClass.id} clicked`, abc.value)
             })
             classSection.appendChild(newClass)
         })
@@ -70,6 +78,8 @@ const getAttributes = (req, res) => {
 }
 getAttributes()
 
+
+
 const getSkills = (req, res) => {
     axios.get('http://www.dnd5eapi.co/api/skills')
     .then((res) => {
@@ -82,8 +92,8 @@ const getSkills = (req, res) => {
             `<input type='checkbox' id='${results[index].index}' value='${results[index].name}'
              <label for='${results[index].index}'>${results[index].name}</label><br>
             `
-            let skillSelect = document.getElementById(results[index].index)
-            skillSelect.addEventListener('click', () => console.log('clkldsjf'))
+            // let skillSelect = document.getElementById(results[index].index)
+            // skillSelect.addEventListener('click', () => console.log('clkldsjf'))
             skillsSection.appendChild(skillBlock)
         })
 
@@ -108,5 +118,11 @@ diceRoll.addEventListener('click', () => {
         intelligence.textContent = res.data[3]
         strength.textContent = res.data[4]
         wisdom.textContent = res.data[5]
+        chaScore.value = res.data[0]
+        conScore.value = res.data[1]
+        dexScore.value = res.data[2]
+        intScore.value = res.data[3]
+        strScore.value = res.data[4]
+        wisScore.value = res.data[5]
     }).catch((err) => console.log(err))
 })
