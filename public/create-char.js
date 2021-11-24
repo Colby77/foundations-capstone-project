@@ -7,6 +7,8 @@ let attributeSectionTest = document.querySelector('.attributes-section-test')
 let skillsSection = document.querySelector('.skills-section')
 let raceChoice = document.getElementById('race-choice')
 let classChoice = document.getElementById('class-choice')
+const backgroundChoice = document.getElementById('background-choice')
+const backgrounds = document.getElementById('backgrounds')
 
 const chaScore = document.getElementById('cha-score')
 const conScore = document.getElementById('con-score')
@@ -56,6 +58,10 @@ const getClasses = (req, res) => {
 }
 getClasses()
 
+backgrounds.addEventListener('click', () => {
+    backgroundChoice.value = backgrounds.value
+})
+
 const getAttributes = (req, res) => {
     axios.get('http://www.dnd5eapi.co/api/ability-scores')
     .then((res) => {
@@ -92,8 +98,9 @@ const getSkills = (req, res) => {
             `<input type='checkbox' id='${results[index].index}' value='${results[index].name}'
              <label for='${results[index].index}'>${results[index].name}</label><br>
             `
-            // let skillSelect = document.getElementById(results[index].index)
-            // skillSelect.addEventListener('click', () => console.log('clkldsjf'))
+            skillBlock.addEventListener('click', () => {
+                console.log(`${results[index].name}`)
+            })
             skillsSection.appendChild(skillBlock)
         })
 

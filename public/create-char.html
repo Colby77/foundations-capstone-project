@@ -66,6 +66,7 @@
          </script>
 
     <form>
+        <h3>Character Sheet</h3>
         <label for='race-choice'>Race:</label>
         <input type='text' id='race-choice' disabled><br>
         <label for='class-choice'>Class:</label>
@@ -84,6 +85,8 @@
         <input type='number' id='str-score' disabled><br>
         <label for='wis-score'>Wisdom:</label>
         <input type='number' id='wis-score' disabled><br>
+
+
     </form>
 
     <h2 class='section-title'>Race</h2><br>
@@ -94,26 +97,17 @@
     <section class='class-section'>
         <div id='class-blocks'></div><br>
         
-            <select id='backgrounds'>
-                <option value='acolyte'>Acolyte</option>
-                <!-- <option value=''></option>
-                <option value=''></option>
-                <option value=''></option>
-                <option value=''></option>
-                <option value=''></option>
-                <option value=''></option>
-                <option value=''></option>
-                <option value=''></option>
-                <option value=''></option>
-                <option value=''></option>
-                <option value=''></option>
-                <option value=''></option>
-                <option value=''></option>
-                <option value=''></option>
-                <option value=''></option> -->
+            <select name='backgrounds' id='backgrounds'>
+                <option value='Acolyte'>Acolyte</option>
+                <option value='Charlatan'>Charlatan</option>
+                <option value='Criminal'>Criminal</option>
+                <option value='Entertainer'>Entertainer</option>
+                <option value='Noble'>Noble</option>
+                <option value='Hermit'>Hermit</option>
 
                 <!-- see week5/assessment-data to get seed data from database -->
             </select><br>
+
     </section>
     <h2 class='section-title'>Attributes and Skills</h2><br>
     <section class='get-scores'>
