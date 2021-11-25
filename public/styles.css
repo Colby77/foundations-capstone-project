@@ -187,7 +187,21 @@ header {
     justify-content: center;
 }
 
+.race-desc {
+    width:400px;
+    height:800px;
+    background-color: coral;
+    padding:10px;
+    margin-left:20px;
+}
 
+.class-desc {
+    width:400px;
+    height:800px;
+    background-color: coral;
+    padding:10px;
+    margin-left:20px;
+}
 
 .skills-section {
     background-color: darkgreen;

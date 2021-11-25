@@ -1,3 +1,6 @@
+
+
+
 let diceRoll = document.querySelector('#dice-roll');
 let raceBlocks = document.querySelector('.race-section');
 let testBtn = document.getElementById('test')
@@ -10,6 +13,11 @@ let classChoice = document.getElementById('class-choice')
 const backgroundChoice = document.getElementById('background-choice')
 const backgrounds = document.getElementById('backgrounds')
 const proficienciesList = document.getElementById('proficiencies')
+const charBonuses = document.getElementById('char-bonuses')
+const raceDescr = document.querySelector('.race-desc')
+const raceTitle = document.getElementById('race-title')
+const classTitle = document.getElementById('class-title')
+const classDescr = document.querySelector('.class-desc')
 
 const chaScore = document.getElementById('cha-score')
 const conScore = document.getElementById('con-score')
@@ -19,7 +27,9 @@ const strScore = document.getElementById('str-score')
 const wisScore = document.getElementById('wis-score')
 
 let proficiencies = []
-proficienciesList.value = 'N/A'
+proficienciesList.value = 'N/A';
+let race = '';
+let playerClass = '';
 
 const getRaces = (req, res) => {
     axios.get('http://www.dnd5eapi.co/api/races')
@@ -32,8 +42,10 @@ const getRaces = (req, res) => {
             newRace.innerHTML = `<h4>${results[i].name}<h4>`
             newRace.id = results[i].index
             newRace.addEventListener('click', () => {
-                console.log(`${newRace.id} clicked`)
+                // console.log(`${newRace.id} clicked`)
                 raceChoice.value = `${results[i].name}`
+                race = `${results[i].name}`.toLowerCase()
+                getRaceInfo()
             })
             raceBlocks.appendChild(newRace)
         }
@@ -54,7 +66,8 @@ const getClasses = (req, res) => {
             newClass.id = results[index].index
             newClass.addEventListener('click', () => {
                 classChoice.value = `${results[index].name}`
-                // console.log(`${newClass.id} clicked`, abc.value)
+                playerClass = `${results[index].name}`.toLowerCase()
+                getClassInfo()
             })
             classSection.appendChild(newClass)
         })
@@ -76,10 +89,10 @@ const getAttributes = (req, res) => {
             abilityScore.classList.add('ability-block')
             abilityScore.innerHTML = 
             `<h5>${results[index].name}</h5>
-             <p id='${results[index].index}'class='att-score'></p>
-             <h4></h4>`
+             <h3 id='${results[index].index}'class='att-score'></h3>`
             abilityScore.addEventListener('click', () => {
                 console.log(`${abilityScore.id} clicked`)
+                
             })
             attributeSection.appendChild(abilityScore)
         })
@@ -90,14 +103,11 @@ getAttributes()
 
 function addSkill(skill){
     proficienciesList.value = ''
-    let proficiency = skill
     if(proficiencies.includes(skill) === false){
         proficiencies.push(skill)
     }
     proficienciesList.value = proficiencies
-    // return proficienciesList
 }
-
 
 const getSkills = (req, res) => {
     axios.get('http://www.dnd5eapi.co/api/skills')
@@ -145,3 +155,103 @@ diceRoll.addEventListener('click', () => {
         wisScore.value = res.data[5]
     }).catch((err) => console.log(err))
 })
+
+// charBonuses.addEventListener('click', () => {
+const getRaceInfo = () => {
+    // console.log(race, playerClass)
+    raceDescr.innerHTML = ""
+    axios.get(`http://www.dnd5eapi.co/api/races/${race}`)
+    .then((res) => {
+        // console.log(res.data)
+        const {age, alignment, language_desc, starting_proficiencies, traits} = res.data
+        let title = document.createElement('h2')
+        title.textContent = race.toUpperCase()
+        let charAge = document.createElement('p')
+        charAge.textContent = `Age: ${age}`
+        let charAlignment = document.createElement('p')
+        charAlignment.textContent = `Alignment: ${alignment}`
+        let language = document.createElement('p')
+        language.textContent = `Language(s): ${language_desc}`
+        let skillList = document.createElement('ul')
+        skillList.textContent = 'Proficient:'
+        // console.log(res.data.starting_proficiencies[0].name)
+        for(let i = 0; i < starting_proficiencies.length; i++){
+            console.log(starting_proficiencies[i].name)
+            let skillItem = document.createElement('li')
+            skillItem.textContent = starting_proficiencies[i].name
+            skillList.appendChild(skillItem)
+        }
+        let traitList = document.createElement('ul')
+        traitList.textContent = 'Traits:'
+        for(let i = 0; i < traits.length; i++){
+            console.log(traits[i].name)
+            let trait = document.createElement('li')
+            trait.textContent = traits[i].name
+            traitList.appendChild(trait)
+        }
+        raceDescr.appendChild(title)
+        raceDescr.appendChild(charAge)
+        raceDescr.appendChild(charAlignment)
+        raceDescr.appendChild(language)
+        raceDescr.appendChild(skillList)
+        raceDescr.appendChild(traitList)
+    })
+    .catch((err) => console.log(err))
+}
+
+const getClassInfo = () => {
+    classDescr.innerHTML = ""
+    axios.get(`http://www.dnd5eapi.co/api/classes/${playerClass}`)
+    .then((res) => {
+        const {proficiency_choices, hit_die, subclasses, proficiencies, saving_throws, starting_equipment} = res.data
+            // console.log(proficiency_choices[1])
+        
+        console.log(proficiency_choices[0].type)
+        let title = document.createElement('h2')
+        title.textContent = playerClass.toUpperCase()
+        let hitDie = document.createElement('h3')
+        hitDie.textContent = `Hit die: 1d${hit_die}`
+        let profChoices = document.createElement('ul')
+        profChoices.textContent = `Starting Proficiencies, Choose ${proficiency_choices[0].choose} from:`
+        let otherChoices = document.createElement('ul')
+        for(let i = 0; i < proficiency_choices[0].from.length; i++){
+            let profChoice = document.createElement('li')
+            profChoice.textContent =  proficiency_choices[0].from[i].name
+            profChoices.appendChild(profChoice)
+        }
+        if(proficiency_choices.length > 1){
+            otherChoices.textContent = `Other Proficiencies, Choose ${proficiency_choices[1].choose} from:`
+            for(let i = 0; i < 5; i++){
+                let profChoice = document.createElement('li')
+                profChoice.textContent =  proficiency_choices[1].from[i].name
+                otherChoices.appendChild(profChoice)
+            }
+        }
+        let otherSkills = document.createElement('p')
+        otherSkills.textContent = 'Other Skills: '
+        for(let i = 0; i < proficiencies.length; i++){
+            otherSkills.textContent += `${proficiencies[i].name}, `
+        }
+        let savingThrows = document.createElement('ul')
+        savingThrows.textContent = 'Saving Throws:'
+        for(let i = 0; i < saving_throws.length; i++){
+
+            let savethrow = document.createElement('li')
+            savethrow.textContent = saving_throws[i].name
+            savingThrows.appendChild(savethrow)
+        }
+        let startEquip = document.createElement('p')
+        startEquip.textContent = 'Starting Equipment: '
+        for(let i = 0; i < starting_equipment.length; i++){
+            startEquip.textContent += `${starting_equipment[i].equipment.name}, `
+        }
+        classDescr.appendChild(title)
+        classDescr.appendChild(hitDie)
+        classDescr.appendChild(profChoices)
+        classDescr.appendChild(otherChoices)
+        classDescr.appendChild(otherSkills)
+        classDescr.appendChild(savingThrows)
+        classDescr.appendChild(startEquip)
+    })
+    .catch((err) => console.log(err))
+}
