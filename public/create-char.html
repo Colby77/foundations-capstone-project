@@ -63,6 +63,8 @@
         <input class = 'char-sheet'type='text' id='class-choice' disabled><br>
         <label class = 'char-sheet'for='background-choice'>Background:</label>
         <input class = 'char-sheet'type='text' id='background-choice' disabled><br>
+        <label class = 'char-sheet' for='alignment-choice'>Alignment</label>
+        <input class = 'char-sheet' type='text' id='alignment-choice' disabled>
         <label class = 'char-sheet'for='proficiency-bonus'>Proficiency:</label>
         <input class = 'char-sheet'type='number' id='proficiency-bonus' value='2' disabled><br>
         <label class = 'char-sheet'for='cha-score'>Charisma:</label>
@@ -78,7 +80,11 @@
         <label class = 'char-sheet'for='wis-score'>Wisdom:</label>
         <input class = 'char-sheet'type='number' id='wis-score' disabled><br>
         <label class='char-sheet' for='proficiencies'>Proficiencies:</label>
-        <textarea class='char-sheet' id='proficiencies' rows='10' cols='10' disabled></textarea><br>
+        <textarea class='char-sheet' id='proficiencies' rows='4' cols='10' disabled></textarea><br>
+        <label class='char-sheet' for='languages'>Languages</label>
+        <textarea class='char-sheet' id='languages' rows=4 cols=10 disabled></textarea><br>
+        <label class = 'char-sheet' for='spells-choice'>Spells</label>
+        <textarea class = 'char-sheet' id='spells-choice' rows=4 cols=10 disabled></textarea><br>
     </form>
 
     <!-- example -->
@@ -114,7 +120,9 @@
     <h2 class='section-title'>Attributes and Skills</h2><br>
     <section class='get-scores'>
         <section class='attributes-section'></section><br>
-        <section class='skills-section'></section>
+        <section class='skills-section'>
+            <h3>Skills</h3>
+        </section>
 
         <div class='race-desc'>
             <h2 id='race-title'>(select race)</h2>
@@ -131,9 +139,27 @@
     </section>
     <h2 class='section-title'>Wrap-Up</h2><br>
     <section class='wrap-up'>
-        <div class='alignment'><h3>Alignment</h3></div>
-        <div class='equipment'><h3>Equipment</h3></div>
-        <div class='spells'><h3>Spells</h3></div>
+        <div class='select-alignment'><h3>Alignment</h3>
+            <select id='alignment'>
+                <option value='Lawful-Good'>Lawful-Good</option>
+                <option value='Neutral-Good'>Neutral-Good</option>
+                <option value='Chaotic-Good'>Chaotic-Good</option>
+                <option value='Lawful-Neutral'>Lawful-Neutral</option>
+                <option value='Neutral'>Neutral</option>
+                <option value='Chaotic-Neutral'>Chaotic-Neutral</option>
+                <option value='Lawful-Evil'>Lawful-Evil</option>
+                <option value='Neutral-Evil'>Neutral-Evil</option>
+                <option value='Chaotic-Evil'>Chaotic-Evil</option>
+            </select>
+            <img id='align-ex'
+            src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.redd.it%2Fttavhvmv1p121.jpg&f=1&nofb=1'>
+        </div>
+
+        <div class='spells' id='spells-section'><h3>Spells</h3>
+            <button id='get-spells'>Pick Spells</button>
+            <p>Pick a few starting spells:</p>
+        </div>
+
         <div class='name'>
             <input type='text' placeholder="name">
         </div>

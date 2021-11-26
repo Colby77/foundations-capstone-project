@@ -17,8 +17,11 @@ module.exports = {
             rolls = rolls.sort()
             rolls.shift()
             let score = rolls[0] + rolls[1] + rolls[2]
-            if(score < 8){
+            if(score < 8 && score > 5){
                 score += 2
+                scores.push(score)
+            }else if(score <= 5){
+                score += 4
                 scores.push(score)
             }else{
                 scores.push(score)
