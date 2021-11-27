@@ -2,8 +2,8 @@ body {
     font-family: 'Anton', sans-serif;
     display:flex;
     flex-direction: column;
-    /* align-items: center;
-    justify-content:space-evenly; */
+   align-items: center;
+    /* justify-content:space-evenly; */
     /* margin-left:100px;
     margin-right:100px; */
 }
@@ -69,31 +69,9 @@ header {
     padding:10px;
     
 }
-#char-sheet-container {
-    border-style: solid;
-    width:400px;
-    margin:10px 20px 10px 85%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-}
-.char-sheet {
-    padding:5px;
-    border-style: solid;
-    width:150px;
-    margin:10px;
-    display: inline-block;
-}
 
-textarea{
-    resize: none;
-}
 
-#proficiencies {
-    height: 100px;
 
-}
 
 #build-pic {
     background-size: 200px;
@@ -221,18 +199,23 @@ textarea{
 
 .wrap-up {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 150px 5px 100px;
+    width:75%;
 }
 
 
 .select-alignment {
-    margin-left:10%;
+    /* margin-left:10%; */
     background-color: red;
     width:500px;
     height:700px;
     padding:10px;
     display:flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
 }
 
 #alignment {
@@ -248,9 +231,38 @@ textarea{
 .spells {
     margin-left:50px;
     background-color: cornflowerblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width:400px;
     padding:10px;
     height:700px;
+}
+
+#char-sheet-container {
+    border-style: solid;
+    width:400px;
+    margin:10px 20px 10px 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+.char-sheet {
+    padding:5px;
+    border-style: solid;
+    width:150px;
+    margin:10px;
+    display: inline-block;
+}
+
+textarea{
+    resize: none;
+}
+
+#proficiencies {
+    height: 100px;
 }
 
 /* ////////////////////////////////////// */
@@ -258,6 +270,8 @@ textarea{
 footer {
     height:100px;
     width:100%;
+    margin: -8px;
+    padding: 10px;
     margin-top:20px;
     background-color: cyan;
 }
