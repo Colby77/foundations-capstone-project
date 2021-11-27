@@ -43,7 +43,18 @@ module.exports = {
     },
     saveChar: (req, res) => {
         console.log(req.body)
-        res.status(200).send('server side ok, sent to front')
+        const{character_name, character_race, character_class, background, character_alignment,
+        prof_bonus, cha, con, dex, intl, str, wis, profs, langs, spells} = req.body
+        sqlize.query(`
+        INSERT INTO characters(name, race, class, background, alignment, prof_bonus,
+            cha, con, dex, intl, str, wis, profs, langs, spells)
+            VALUES('${character_name}', '${character_race}', '${character_class}', '${background}',
+                '${character_alignment}', ${prof_bonus}, ${cha}, ${con}, ${dex}, ${intl},
+                ${str}, ${wis}, '${profs}', '${langs}', '${spells}');
+        `).then(() => {
+            console.log('character saved to DB')
+            res.sendStatus(200)
+        }).catch(err => console.log('error saving character', err))
     },
     seed: (req, res) => {
         sqlize.query(`
@@ -73,7 +84,10 @@ module.exports = {
              cha, con, dex, intl, str, wis, profs, langs, spells)
              VALUES('Imsh', 'Half-Orc', 'Bard', 'Soldier', 'Chaotic-Good',
               2, 17, 11, 13, 8, 17, 12, 'Intimidation, Athletics, Persuasion, Performance', 'Orc, Common',
-              'Vicious Mockery, Prestidigitation, Minor Illusion');
+              'Vicious Mockery, Prestidigitation, Minor Illusion'),
+
+              ('Clank', 'Goblin', 'Cleric', 'Noble', 'Chaotic-Neutral', 2, 12, 12, 14, 12, 10, 13,
+              'Persuasion, Religion, Medicine, Arcana', 'Common, Goblin', 'Guidance, Mage Hand');
         `).then(() => {
             console.log('DB seeded!')
             res.sendStatus(200)

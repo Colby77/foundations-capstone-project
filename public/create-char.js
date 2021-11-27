@@ -359,7 +359,7 @@ alignments.addEventListener('click', () => {
 submitChar.addEventListener('click', () => {
     console.log(`this is to test if att values can be got charisma: ${chaScore.value}`)
     const createdCharacter = new Character(charName.value, race, playerClass, backgroundChoice.value, alignmentChoice.value, 
-        profBonus.value, chaScore.value, conScore.value, dexScore.value, intScore.value, strScore.value, wisScore.value,
+        +profBonus.value, +chaScore.value, +conScore.value, +dexScore.value, +intScore.value, +strScore.value, +wisScore.value,
          proficienciesList.value,
         languagesList.value, spellsList.value)
     alert('Character completed!')
