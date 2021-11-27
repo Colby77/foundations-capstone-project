@@ -1,18 +1,17 @@
-
-
-let diceRoll = document.querySelector('#dice-roll');
-let raceBlocks = document.querySelector('.race-section');
-let testBtn = document.getElementById('test')
-let classSection = document.getElementById('class-blocks')
-let attributeSection = document.querySelector('.attributes-section')
-let attributeSectionTest = document.querySelector('.attributes-section-test')
-let skillsSection = document.querySelector('.skills-section')
-let raceChoice = document.getElementById('race-choice')
-let classChoice = document.getElementById('class-choice')
+const diceRoll = document.querySelector('#dice-roll');
+const raceBlocks = document.querySelector('.race-section');
+const testBtn = document.getElementById('test')
+const classSection = document.getElementById('class-blocks')
+const attributeSection = document.querySelector('.attributes-section')
+const attributeSectionTest = document.querySelector('.attributes-section-test')
+const skillsSection = document.querySelector('.skills-section')
+const raceChoice = document.getElementById('race-choice')
+const classChoice = document.getElementById('class-choice')
 const backgroundChoice = document.getElementById('background-choice')
 const backgrounds = document.getElementById('backgrounds')
 const alignments = document.getElementById('alignment')
 const alignmentChoice = document.getElementById('alignment-choice')
+const profBonus = document.getElementById('proficiency-bonus')
 const proficienciesList = document.getElementById('proficiencies')
 const languagesList = document.getElementById('languages')
 const charBonuses = document.getElementById('char-bonuses')
@@ -24,6 +23,14 @@ const spellsBtn = document.getElementById('get-spells')
 const spellsSection = document.getElementById('spells-section')
 const spellsList = document.getElementById('spells-choice')
 const submitChar = document.getElementById('submit-char')
+const charName = document.getElementById('char-name')
+
+let charisma = document.getElementById('cha')
+let constitution= document.getElementById('con')
+let dexterity = document.getElementById('dex')
+let intelligence = document.getElementById('int')
+let strength = document.getElementById('str')
+let wisdom = document.getElementById('wis')
 
 const chaScore = document.getElementById('cha-score')
 const conScore = document.getElementById('con-score')
@@ -31,6 +38,29 @@ const dexScore = document.getElementById('dex-score')
 const intScore = document.getElementById('int-score')
 const strScore = document.getElementById('str-score')
 const wisScore = document.getElementById('wis-score')
+
+class Character{
+    constructor(
+        character_name, character_race, character_class, background, character_alignment, 
+        prof_bonus, cha, con, dex, intl, str, wis, profs, langs, spells){
+            this.character_name = character_name;
+            this.character_race = character_race;
+            this.character_class = character_class;
+            this.background = background;
+            this.character_alignment = character_alignment;
+            this.prof_bonus = prof_bonus;
+            this.cha = cha;
+            this.con = con;
+            this.dex = dex;
+            this.intl = intl;
+            this.str = str;
+            this.wis = wis;
+            this.profs = profs;
+            this.langs = langs;
+            this.spells = spells;
+        }
+    
+}
 
 let proficiencies = []
 proficienciesList.value = 'N/A';
@@ -40,6 +70,7 @@ let spells = []
 spellsList.value = 'N/A';
 let race = '';
 let playerClass = '';
+
 
 const getRaces = (req, res) => {
     axios.get('http://www.dnd5eapi.co/api/races')
@@ -170,12 +201,12 @@ diceRoll.addEventListener('click', () => {
     axios.get('http://localhost:4004/attribute_scores')
     .then((res) => {
         console.log(res.data)
-        let charisma = document.getElementById('cha')
-        let constitution= document.getElementById('con')
-        let dexterity = document.getElementById('dex')
-        let intelligence = document.getElementById('int')
-        let strength = document.getElementById('str')
-        let wisdom = document.getElementById('wis')
+        charisma = document.getElementById('cha')
+        constitution= document.getElementById('con')
+        dexterity = document.getElementById('dex')
+        intelligence = document.getElementById('int')
+        strength = document.getElementById('str')
+        wisdom = document.getElementById('wis')
         charisma.textContent = res.data[0]
         constitution.textContent = res.data[1]
         dexterity.textContent = res.data[2]
@@ -190,6 +221,7 @@ diceRoll.addEventListener('click', () => {
         wisScore.value = res.data[5]
     }).catch((err) => console.log(err))
 })
+
 
 // charBonuses.addEventListener('click', () => {
     const getRaceInfo = () => {
@@ -298,7 +330,7 @@ const addSpell = (spell) => {
     }
     spellsList.value = spells
 }
-// spellsBtn.addEventListener('click', () => {
+
 const getSpells = () => {
     axios.get('http://www.dnd5eapi.co/api/spells?level=0')
     .then((res) => {
@@ -325,5 +357,16 @@ alignments.addEventListener('click', () => {
 })
 
 submitChar.addEventListener('click', () => {
+    console.log(`this is to test if att values can be got charisma: ${chaScore.value}`)
+    const createdCharacter = new Character(charName.value, race, playerClass, backgroundChoice.value, alignmentChoice.value, 
+        profBonus.value, chaScore.value, conScore.value, dexScore.value, intScore.value, strScore.value, wisScore.value,
+         proficienciesList.value,
+        languagesList.value, spellsList.value)
     alert('Character completed!')
+    axios.post('http://localhost:4004/character_complete',createdCharacter)
+    .then((res) => {
+        console.log('complete')
+        console.log(res.data)
+    })
+    .catch((err) => console.log(err))
 })
