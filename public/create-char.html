@@ -55,7 +55,7 @@
         
         
     </section><br>
-    <form id='char-sheet-container'>
+    <!-- <form id='char-sheet-container'>
         <h3 class='char-sheet'>Character Sheet</h3>
         <label class = 'char-sheet'for='race-choice'>Race:</label>
         <input class = 'char-sheet'type='text' id='race-choice' disabled><br>
@@ -85,7 +85,7 @@
         <textarea class='char-sheet' id='languages' rows=4 cols=10 disabled></textarea><br>
         <label class = 'char-sheet' for='spells-choice'>Spells</label>
         <textarea class = 'char-sheet' id='spells-choice' rows=4 cols=10 disabled></textarea><br>
-    </form>
+    </form> -->
 
     <!-- example -->
     <!-- <form>
@@ -156,13 +156,45 @@
         </div>
 
         <div class='spells' id='spells-section'><h3>Spells</h3>
-            <button id='get-spells'>Pick Spells</button>
             <p>Pick a few starting spells:</p>
         </div>
 
-        <div class='name'>
-            <input type='text' placeholder="name">
+        <div>
+            <form id='char-sheet-container'>
+                <h3 class='char-sheet'>Character Sheet</h3><br>
+                <input class='char-sheet' type='text' placeholder="character name..."><br>
+                <label class = 'char-sheet'for='race-choice'>Race:</label>
+                <input class = 'char-sheet'type='text' id='race-choice' disabled><br><br>
+                <label class = 'char-sheet'for='class-choice'>Class:</label>
+                <input class = 'char-sheet'type='text' id='class-choice' disabled><br>
+                <label class = 'char-sheet'for='background-choice'>Background:</label>
+                <input class = 'char-sheet'type='text' id='background-choice' disabled><br>
+                <label class = 'char-sheet' for='alignment-choice'>Alignment</label>
+                <input class = 'char-sheet' type='text' id='alignment-choice' disabled><br>
+                <label class = 'char-sheet'for='proficiency-bonus'>Proficiency:</label>
+                <input class = 'char-sheet'type='number' id='proficiency-bonus' value='2' disabled><br>
+                <label class = 'char-sheet'for='cha-score'>Charisma:</label>
+                <input class = 'char-sheet'type='number' id='cha-score' disabled><br>
+                <label class = 'char-sheet'for='con-score'>Constitution:</label>
+                <input class = 'char-sheet'type='number' id='con-score' disabled><br>
+                <label class = 'char-sheet'for='dex-score'>Dexterity:</label>
+                <input class = 'char-sheet'type='number' id='dex-score' disabled><br>
+                <label class = 'char-sheet'for='int-score'>Intelligence:</label>
+                <input class = 'char-sheet'type='number' id='int-score' disabled><br>
+                <label class = 'char-sheet'for='str-score'>Strength:</label>
+                <input class = 'char-sheet'type='number' id='str-score' disabled><br>
+                <label class = 'char-sheet'for='wis-score'>Wisdom:</label>
+                <input class = 'char-sheet'type='number' id='wis-score' disabled><br>
+                <label class='char-sheet' for='proficiencies'>Proficiencies:</label>
+                <textarea class='char-sheet' id='proficiencies' rows='4' cols='10' disabled></textarea><br>
+                <label class='char-sheet' for='languages'>Languages</label>
+                <textarea class='char-sheet' id='languages' rows=4 cols=10 disabled></textarea><br>
+                <label class = 'char-sheet' for='spells-choice'>Spells</label>
+                <textarea class = 'char-sheet' id='spells-choice' rows=4 cols=10 disabled></textarea><br>
+                <input class='char-sheet' id='submit-char' type='submit'>
+            </form>
         </div>
+
     </section>
     <footer><h1>This is a footer</h1></footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>

@@ -23,6 +23,7 @@ const classDescr = document.querySelector('.class-desc')
 const spellsBtn = document.getElementById('get-spells')
 const spellsSection = document.getElementById('spells-section')
 const spellsList = document.getElementById('spells-choice')
+const submitChar = document.getElementById('submit-char')
 
 const chaScore = document.getElementById('cha-score')
 const conScore = document.getElementById('con-score')
@@ -290,33 +291,39 @@ diceRoll.addEventListener('click', () => {
         .catch((err) => console.log(err))
     }
     
-    const addSpell = (spell) => {
-        spellsList.value = ''
-        if(spells.includes(spell) === false){
-            spells.push(spell)
-        }
-        spellsList.value = spells
+const addSpell = (spell) => {
+    spellsList.value = ''
+    if(spells.includes(spell) === false){
+        spells.push(spell)
     }
-    spellsBtn.addEventListener('click', () => {
-        axios.get('http://www.dnd5eapi.co/api/spells?level=0')
-        .then((res) => {
-            const {results} = res.data
-            console.log(res.data)
-            results.forEach((ele, ind) => {
-                let spell = document.createElement('div')
-                // spell.classList.add('spells')
-                spell.innerHTML = `
-                <input type='checkbox' id='${results[ind].index}' onclick="addSpell('${results[ind].name}')">
-                <label for='${results[ind].index}'>${results[ind].name}</label><br>`
-                spellsSection.appendChild(spell)
-            })
+    spellsList.value = spells
+}
+// spellsBtn.addEventListener('click', () => {
+const getSpells = () => {
+    axios.get('http://www.dnd5eapi.co/api/spells?level=0')
+    .then((res) => {
+        const {results} = res.data
+        console.log(res.data)
+        results.forEach((ele, ind) => {
+            let spell = document.createElement('div')
+            // spell.classList.add('spells')
+            spell.innerHTML = `
+            <input type='checkbox' id='${results[ind].index}' onclick="addSpell('${results[ind].name}')">
+            <label for='${results[ind].index}'>${results[ind].name}</label><br>`
+            spellsSection.appendChild(spell)
         })
-        .catch((err) => console.log(err))
     })
+    .catch((err) => console.log(err))
+}
+getSpells()
 
 backgrounds.addEventListener('click', () => {
     backgroundChoice.value = backgrounds.value
 })
 alignments.addEventListener('click', () => {
     alignmentChoice.value = alignments.value
+})
+
+submitChar.addEventListener('click', () => {
+    alert('Character completed!')
 })
