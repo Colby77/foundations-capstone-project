@@ -275,3 +275,24 @@ footer {
     margin-top:20px;
     background-color: cyan;
 }
+
+/* //////////////////////////////////////////// */
+/* //////////  Account.html    /////////////// */
+/* ////////////////////////////////////////// */
+
+#account-main {
+    display: flex; 
+    justify-content: center;
+  }
+
+  form {
+    width: 350px;
+    min-height: 350px;
+    background-color: darkslategray;
+    position: relative;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-evenly; 
+    align-items: center;
+    margin: 30px;
+  }

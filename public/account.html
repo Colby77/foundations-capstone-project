@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='styles.css'>
+    <title>Account</title>
+</head>
+<body>
+    <header>
+        <div class ='heading'>
+            <h1>DungeonBuddy.com</h1>
+            <img id='logo' alt='wizard-icon' src='../icons8-wizard-64.png'>
+            <a id='account' href='account.html'>Account</a>
+        </div>
+        <div class='sub-heading'>
+            <nav>
+                <a class='nav-link' href='home.html'>Home</a>
+                <a class='nav-link' href='create-char.html'>Create Character</a>
+                <a class='nav-link'>Share</a>
+                <a class='nav-link'>Resources</a>
+                <a class='nav-link'>Contact Us</a>
+            </nav>
+        </div>
+    </header>
+    <br>
+    <main id='account-main'>
+        <form id="login-form">
+            <h1>Log In</h1>
+            <input 
+                type='text'
+                id="login-username"
+                placeholder="Username"/>
+            <input 
+                type='password'
+                id="login-password"
+                placeholder='Password'/>
+            <button>Sign In</button>
+        </form>
+        <form id="register-form">
+            <h1>Register</h1>
+            <input 
+                type='text'
+                id="register-username"
+                placeholder="Username"/>
+            <input 
+                type='text'
+                id="register-email"
+                placeholder='Email'/>
+            <input 
+                type='password'
+                id="register-password"
+                placeholder='Password'/>
+            <input 
+                type='password'
+                id="register-password-2"
+                placeholder='Confirm Password'/>
+            <button>Register</button>
+        </form>
+        <section id="user-info"></section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src='account.js'></script>
+</body>
+</html>
