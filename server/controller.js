@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const bcrypt = require('bcrypt')
+
 app.use(express.json());
 app.use(cors());
 
@@ -109,32 +111,43 @@ module.exports = {
         console.log('Registering User')
         // console.log(req.body)
         const {username, password, email} = req.body
+        const salt = bcrypt.genSaltSync(5)
+        const passwordHash = bcrypt.hashSync(password, salt)
         sqlize.query(`
         INSERT INTO users(username, password, email)
-        VALUES('${username}', '${password}', '${email}');
+        VALUES('${username}', '${passwordHash}', '${email}');
         `)
         let newUser = {
             username: username,
-            password,
+            password: passwordHash,
             email
         }
         res.status(200).send(newUser)
+        // return passwordHash
     },
     login: (req, res) => {
         console.log('logging in')
         // console.log(req.body)
         const{username, password} = req.body
+        console.log(username, password)
         sqlize.query(`
-        SELECT username, user_id FROM users
-        WHERE password = '${password}';
+        SELECT * FROM users
+        WHERE username = '${username}';
         `)
         .then((dbRes) => {
-            console.log(dbRes[0])
-            res.status(200).send(dbRes[0])
+            // console.log(dbRes[0][0])
+            const existingPassword = bcrypt.compareSync(password, dbRes[0][0].password)
+            console.log(existingPassword)
+            if(existingPassword === true){
+                console.log('password check worked')
+                res.status(200).send(dbRes[0])
+            }else{
+                res.status(400).send()
+            }
         }).catch(err => console.log(err))
     },
     getChars: (req, res) => {
-        console.log('success')
+        console.log('get characters success')
         const {id} = req.params
         console.log(id)
         sqlize.query(`

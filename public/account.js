@@ -20,7 +20,7 @@ const login = (obj) => {
         console.log(res.data[0])
         showCurrentUser(res.data[0])
     }).catch((err) => {
-        alert("User doesn't exist")
+        alert("Make sure username and password are correct")
         console.log(err)
     })
 }
