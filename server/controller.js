@@ -70,6 +70,7 @@ module.exports = {
             email VARCHAR(50)
         );
 
+
         create table characters(
             character_id SERIAL PRIMARY KEY,
             user_id INTEGER REFERENCES users(user_id),
@@ -140,11 +141,25 @@ module.exports = {
             console.log(existingPassword)
             if(existingPassword === true){
                 console.log('password check worked')
+                req.session.isAuth = true
+                req.session.current_user = dbRes[0][0].user_id
+                console.log(req.session)
                 res.status(200).send(dbRes[0])
+                // res.redirect('/')
             }else{
                 res.status(400).send()
             }
         }).catch(err => console.log(err))
+    },
+    logout: (req, res) => {
+        req.session.destroy((err) => {
+            if(err){
+                console.log(err)
+            }
+            console.log('session destroyed')
+            // console.log(req.session)
+            res.sendStatus(200)
+        })
     },
     getChars: (req, res) => {
         console.log('get characters success')

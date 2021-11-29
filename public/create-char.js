@@ -1,3 +1,6 @@
+
+
+
 const diceRoll = document.querySelector('#dice-roll');
 const raceBlocks = document.querySelector('.race-section');
 const testBtn = document.getElementById('test')
@@ -39,6 +42,10 @@ const intScore = document.getElementById('int-score')
 const strScore = document.getElementById('str-score')
 const wisScore = document.getElementById('wis-score')
 
+axios.get('/')
+.then((res) => {
+    console.log(res.data)
+})
 
 class Character{
     constructor(
