@@ -20,7 +20,8 @@ const login = (obj) => {
         console.log(res.data[0])
         showCurrentUser(res.data[0])
     }).catch((err) => {
-        alert("User doesn't exist", err)
+        alert("User doesn't exist")
+        console.log(err)
     })
 }
 
@@ -78,8 +79,8 @@ const showCurrentUser = (data) => {
     userCard.innerHTML = `<p class="username">Welcome, ${data.username}!</p>`
     userContainer.appendChild(userCard)
     getCharacters(data.user_id)
-    currentUser(data.username)
-    currentUserId(data.user_id)
+    // currentUser(data.username)
+    // currentUserId(data.user_id)
 }
 
 const getCharacters = (id) => {
