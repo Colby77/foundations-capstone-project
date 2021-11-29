@@ -39,6 +39,7 @@ const intScore = document.getElementById('int-score')
 const strScore = document.getElementById('str-score')
 const wisScore = document.getElementById('wis-score')
 
+
 class Character{
     constructor(
         character_name, character_race, character_class, background, character_alignment, 

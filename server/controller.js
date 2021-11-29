@@ -107,7 +107,7 @@ module.exports = {
     },
     register: (req, res) => {
         console.log('Registering User')
-        console.log(req.body)
+        // console.log(req.body)
         const {username, password, email} = req.body
         sqlize.query(`
         INSERT INTO users(username, password, email)
@@ -122,12 +122,28 @@ module.exports = {
     },
     login: (req, res) => {
         console.log('logging in')
-        console.log(req.body)
+        // console.log(req.body)
         const{username, password} = req.body
-        let user = sqlize.query(`
-        SELECT username FROM users
-        WHERE password = ${password}
+        sqlize.query(`
+        SELECT username, user_id FROM users
+        WHERE password = '${password}';
         `)
-        res.status(200).send(user)
+        .then((dbRes) => {
+            console.log(dbRes[0])
+            res.status(200).send(dbRes[0])
+        }).catch(err => console.log(err))
+    },
+    getChars: (req, res) => {
+        console.log('success')
+        const {id} = req.params
+        console.log(id)
+        sqlize.query(`
+        SELECT name, race, class FROM characters
+        WHERE user_id = ${id}
+        `)
+        .then((dbRes) => {
+            console.log(dbRes[0])
+            res.status(200).send(dbRes[0])
+        }).catch(err => console.log(err))
     }
 }

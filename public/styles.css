@@ -3,21 +3,23 @@ body {
     display:flex;
     flex-direction: column;
    align-items: center;
-    /* justify-content:space-evenly; */
-    /* margin-left:100px;
-    margin-right:100px; */
+background-color: #323031;
 }
 
 header {
-    background-color: red;
+    background-color: #540B0E;
     margin: -8px;
     padding: 10px;
     width:100%;
 }
 
+#site-title {
+    color:#C1BDB3;
+}
+
 .heading {
     width: 100%;
-    /* background-color: blue; */
+    /* background-color: #3D3B3C; */
     /* margin-left:20px; */
     display: flex;
     align-items: center;
@@ -28,15 +30,15 @@ header {
     position:absolute;
     right: 20px;
     padding:15px;
-    background-color: green;
-    border-radius: 5px;
+    background-color: #C1BDB3;
+    border-radius: 10px;
 }
 
 #logo {
     margin-left:20px;
-    background-color: white;
+    background-color: #C1BDB3;
     border-radius: 25%;
-    padding:5px;
+    padding:10px;
 }
 
 .sub-heading {
@@ -44,29 +46,30 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: black;
+    background-color: #3D3B3C;
     margin:10px -10px -10px -10px;
 }
 
 .nav-link {
-    background-color: white;
+    background-color: #C1BDB3;
     display: inline;
     padding: 10px 10px 10px 10px;
     margin-left: 150px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 /* ////////////////////////////////////////////////// */
 
 .instructions {
-    background-color: pink;
+    background-color: #7F7979;
     width:70%;
     margin:10px 15% 10px 15%;
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     padding:10px;
+    font-size: 18px;
+    border-radius: 10px;
     
 }
 
@@ -83,7 +86,9 @@ header {
     padding:10px;
     width:80%;
     margin:20px 10% 10px 10%;
-    background-color: blue;
+    background-color: #C1BDB3;
+    color:black;
+    border-radius: 10px;
 }
 
 .race-section {
@@ -99,15 +104,20 @@ header {
     margin:10px 20px 10px 20px;
     width: 100px;
     height: 100px;
-    background-color: chartreuse;
+    background-color: #7F7979;
+    border-radius: 10px;
 }
 
-#race-pics{
+.race-option:hover{
+    cursor: pointer;
+    background-color: #540B0E;
+}
+/* #race-pics{
     width: 70%;
     height: 250px;
     background-color: blueviolet;
     margin: 10px 15% 10px 15%;
-}
+} */
 
 /* /////////////////////////////////////////////// */
 
@@ -129,13 +139,29 @@ header {
 .class-option {
     width: 200px;
     height: 150px;
-    background-color: brown;
+    background-color: #7F7979;
     padding:10px;
     margin: 20px 50px 20px 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
 }
+
+.class-option:hover {
+    background-color: #540B0E;
+    cursor:pointer;
+}
+
+
+
+#backgrounds {
+    width:150px;
+    height:80px;
+    font-size: 20px;
+    padding:10px;
+}
+
 /* //////////////////////////////////////// */
 
 .get-scores {
@@ -148,7 +174,7 @@ header {
     width: 60px;
     height: 100px;
     padding:10px;
-    background-color: crimson;
+    background-color: #540B0E;
     margin-top:10px;
     margin-bottom: 10px;
     display: flex;
@@ -156,10 +182,15 @@ header {
     justify-content: center;
     align-items: center;
     margin-left:100px;
+    color:white;
+    border-radius: 10px;
 }
 
 #dice-roll {
     margin-left:100px;
+    height:50px;
+    padding:10px;
+    font-size: 18px;
 }
 
 .att-score {
@@ -174,25 +205,28 @@ header {
 .race-desc {
     width:400px;
     height:800px;
-    background-color: coral;
+    background-color: #C1BDB3;
     padding:10px;
     margin-left:20px;
+    border-radius: 10px;
 }
 
 .class-desc {
     width:400px;
     height:800px;
-    background-color: coral;
+    background-color: #C1BDB3;
     padding:10px;
     margin-left:20px;
+    border-radius: 10px;
 }
 
 .skills-section {
-    background-color: darkgreen;
+    background-color: #C1BDB3;
     width:150px;
     /* height:500px; */
     padding:10px;
     margin-left:20px;
+    border-radius: 10px;
 }
 
 /* ///////////////////////////////////////////////// */
@@ -208,7 +242,7 @@ header {
 
 .select-alignment {
     /* margin-left:10%; */
-    background-color: red;
+    background-color: #7F7979;
     width:500px;
     height:700px;
     padding:10px;
@@ -216,6 +250,7 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
 }
 
 #alignment {
@@ -230,7 +265,7 @@ header {
 
 .spells {
     margin-left:50px;
-    background-color: cornflowerblue;
+    background-color: #7F7979;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -238,6 +273,7 @@ header {
     width:400px;
     padding:10px;
     height:700px;
+    border-radius: 10px;
 }
 
 #char-sheet-container {
@@ -255,6 +291,7 @@ header {
     width:150px;
     margin:10px;
     display: inline-block;
+    border-radius: 10px;
 }
 
 textarea{
@@ -269,11 +306,14 @@ textarea{
 
 footer {
     height:100px;
+    color:white;
+    position: relative;
+    bottom:0px;
     width:100%;
     margin: -8px;
     padding: 10px;
-    margin-top:20px;
-    background-color: cyan;
+    margin-top:50px;
+    background-color: black;
 }
 
 /* //////////////////////////////////////////// */
@@ -282,17 +322,82 @@ footer {
 
 #account-main {
     display: flex; 
+    flex-direction: column;
     justify-content: center;
   }
 
   form {
     width: 350px;
     min-height: 350px;
-    background-color: darkslategray;
+    background-color: #C1BDB3;
     position: relative;
     display: flex; 
     flex-direction: column;
     justify-content: space-evenly; 
     align-items: center;
     margin: 30px;
+    color:black;
+  }
+
+  #account-info {
+      display: flex;
+  }
+
+  .user-card {
+    background-color: #C1BDB3;
+    font-size: 20px;
+    font-weight: 700;
+    width: 300px;
+    margin: 20px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+
+  .character-card {
+      background-color: #C1BDB3;
+      padding:15px;
+      margin-top: 15px;
+      border-radius: 15px;
+  }
+
+  /* /////////////////////////////////////////// */
+  /* ////////////////  home.html  ///////////// */
+  /* ///////////////////////////////////////// */
+
+  .homepage-main {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      margin-left: 100px;
+      margin-right: 100px;
+  }
+
+  .site-category {
+      width: 400px;
+      /* height:300px; */
+      background-color: #7F7979;
+      padding:15px;
+      margin: 100px 100px 100px 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 10px;
+  }
+
+  .main-feature {
+      margin-top:30px;
+  }
+
+  #feature-pic {
+      background-size: 500px;
+      background-color: green;
+  }
+
+  .category-pic {
+      width: 400px;
   }
