@@ -6,6 +6,7 @@ const infoResult = document.getElementById('info-result')
 const spellsPic = document.getElementById('spells-pic')
 const spellSelect = document.getElementById('spell-select')
 const monsterPic = document.getElementById('monsters-pic')
+const equipPic = document.getElementById('equip-pic')
 
 
 let group=""
@@ -134,9 +135,58 @@ monsterPic.addEventListener('click', () => {
         results.forEach((ele, i) => {
             let info = document.createElement('div')
             info.innerHTML = `
-            <h5 class='search-res' onclick="monstSearch('${results[i].index}')">${results[i].name}</h5>
-            `
+            <h5 class='search-res' onclick="monstSearch('${results[i].index}')">${results[i].name}</h5>`
             infoSearch.appendChild(info)
         })
+    })
+})
+
+const equipSearch = (equipment) => {
+    infoResult.innerHTML = ``
+    axios.get(`http://www.dnd5eapi.co/api/equipment/${equipment}`)
+    .then((res) => {
+        // console.log(res.data)
+        const {name, equipment_category} = res.data
+        console.log(name)
+        let newItem = document.createElement('div')
+        if(equipment_category.index === 'weapon'){
+            newItem.innerHTML = `
+            <h3>${name}</h3>
+            <p>Category: ${res.data.equipment_category.name}</p>
+            <p>Damage: ${res.data.damage.damage_dice}, ${res.data.damage.damage_type.name}</p>
+            <p>Cost: ${res.data.cost.quantity} ${res.data.cost.unit}</p>`
+        }else if(equipment_category.index === 'armor'){
+            newItem.innerHTML = `
+            <h3>${name}</h3>
+            <p>Category: ${equipment_category.name}</p>
+            <p>AC: ${res.data.armor_category}, ${res.data.armor_class.base}</p>
+            <p>Cost: ${res.data.cost.quantity} ${res.data.cost.unit}</p>`
+        }else if(equipment_category.index === 'adventuring-gear'){
+            newItem.innerHTML = `
+            <h3>${name}</h3>
+            <p>Category: ${equipment_category.name}</p>
+            <p>Description: ${res.data.desc}</p>
+            <p>Cost: ${res.data.cost.quantity} ${res.data.cost.unit}</p>`
+        }
+        infoResult.appendChild(newItem)
+    })
+}
+
+equipPic.addEventListener('click', () => {
+    infoSearch.innerHTML = ``
+    infoResult.innerHTML=``
+    let equipSelect = document.getElementById('equip-select').value
+    axios.get(`http://www.dnd5eapi.co/api/equipment-categories/${equipSelect}`)
+    .then((res) => {
+        console.log(res.data)
+        const {equipment} = res.data
+        equipment.forEach((ele, i) => {
+            let info = document.createElement('div')
+            info.innerHTML = `
+            <p class='search-res' onclick="equipSearch('${equipment[i].index}')">${equipment[i].name}</p>`
+            infoSearch.appendChild(info)
+        })
+        let spellDesc = document.createElement('div')
+        infoSearch.appendChild(spellDesc)
     })
 })

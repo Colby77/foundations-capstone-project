@@ -428,15 +428,19 @@ footer {
       display:flex;
       flex-direction: column;
       align-items: baseline;
+      margin-left: 100px;
+      margin-right:100px;
   }
 
   .search-res {
       padding:10px;
       margin-left: 5px;
+
   }
   .search-res:hover{
       transform: scale(1.1,1.1);
       cursor:pointer;
+      color:#540B0E;
   }
 
   #spell-level{
