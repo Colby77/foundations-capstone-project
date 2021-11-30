@@ -404,10 +404,28 @@ footer {
   .category-pic {
       width: 400px;
   }
+  .category-pic:hover {
+      cursor:pointer;
+      transform: scale(1.05, 1.05);
+  }
 
   #info-search {
-      background-color: green;
+      background-color: #C1BDB3;
       display: flex;
-      flex-direction: column;
+      /* justify-content: space-evenly; */
+      flex-wrap: wrap;
       padding:15px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+  }
+
+  #info-result {
+      background-color: #C1BDB3;
+      padding:15px;
+      border-radius: 10px;
+  }
+
+  .search-res {
+      padding:10px;
+      margin-left: 5px;
   }
