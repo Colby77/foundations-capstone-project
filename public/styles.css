@@ -416,6 +416,8 @@ footer {
       flex-wrap: wrap;
       padding:15px;
       margin-bottom: 15px;
+      margin-left: 100px;
+      margin-right: 100px;
       border-radius: 10px;
   }
 
@@ -423,9 +425,24 @@ footer {
       background-color: #C1BDB3;
       padding:15px;
       border-radius: 10px;
+      display:flex;
+      flex-direction: column;
+      align-items: baseline;
   }
 
   .search-res {
       padding:10px;
       margin-left: 5px;
+  }
+  .search-res:hover{
+      transform: scale(1.1,1.1);
+      cursor:pointer;
+  }
+
+  #spell-level{
+      margin-top:10px;
+      
+  }
+  #spell-label {
+      margin-top: 5px;
   }

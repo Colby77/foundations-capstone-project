@@ -1,11 +1,11 @@
 
 
-
 const racesPic = document.getElementById('races-pic')
 const infoSearch = document.getElementById('info-search')
 const infoResult = document.getElementById('info-result')
 const spellsPic = document.getElementById('spells-pic')
 const spellSelect = document.getElementById('spell-select')
+const monsterPic = document.getElementById('monsters-pic')
 
 
 let group=""
@@ -91,31 +91,52 @@ spellsPic.addEventListener('click', () => {
         results.forEach((ele, i) => {
             let info = document.createElement('div')
             info.innerHTML = `
-            <li class='search-res' onclick="spellSearch('${results[i].index}')">${results[i].name}</li>`
+            <p class='search-res' onclick="spellSearch('${results[i].index}')">${results[i].name}</p>`
             infoSearch.appendChild(info)
         })
         let spellDesc = document.createElement('div')
         infoSearch.appendChild(spellDesc)
     })
-    
-    // <label for='spell-level'>Enter a spell level</label>
-    // <input id='spell-level' type='number' max=9 min=0>
-    // <button 'type='submit' onclick="spellSearch(${spellNum})">Submit</button>
-    // `
-    // var spellNum = document.getElementById('spell-level')
-    // var spellNum = document.getElementsByName('spell-level')
-    // infoSearch.appendChild(spellQuestion)
-    // let spellLevel = document.getElementById('spell-level')
-    // infoSearch.appendChild(spellLevel)
-    // axios.get(`http://www.dnd5eapi.co/api/${group}?level=${spellLevel.value}`)
-    // .then((res) => {
-        //     console.log(res.data)
-        //     const {results} = res.data
-    //     results.forEach((ele, i) => {
-    //         let info = document.createElement('div')
-    //         info.innerHTML = `
-    //         <h5>${results[i].name}</h5>`
-    //         infoSearch.appendChild(info)
-    //     })
-    // })
+})
+
+const monstSearch = (monster) => {
+    axios.get(`http://www.dnd5eapi.co/api/monsters/${monster}`)
+    .then((res) => {
+        console.log(res.data)
+        infoResult.innerHTML = `
+        <h3>${res.data.name}</h3>
+        <h4>Size: ${res.data.size}</h4>
+        <p>Type: ${res.data.type}</p>
+        <p>Alignment: ${res.data.alignment}</p>
+        <p>Languages: ${res.data.languages}</p>
+        <p>Armor Class: ${res.data.armor_class}</p>
+        <p>Challenge Rating: ${res.data.challenge_rating}</p>
+        <p>XP: ${res.data.xp}</p>
+        `
+        let actions = document.createElement('ul')
+        actions.textContent = 'Actions:'
+        for(let i = 0; i < res.data.actions.length; i++){
+            let action = document.createElement('li')
+            action.innerHTML = `<p>${res.data.actions[i].name}: ${res.data.actions[i].desc}</p>`
+            actions.appendChild(action)
+        }
+        infoResult.appendChild(actions)
+        console.log(res.data)
+    })
+}
+
+monsterPic.addEventListener('click', () => {
+    infoSearch.innerHTML = ``
+    infoResult.innerHTML=``
+    axios.get(`http://www.dnd5eapi.co/api/monsters`)
+    .then((res) => {
+        const {results} = res.data
+        results.forEach((ele, i) => {
+            let info = document.createElement('div')
+            info.innerHTML = `
+            <h5 class='search-res' onclick="monstSearch('${results[i].index}')">${results[i].name}</h5>
+            `
+            infoSearch.appendChild(info)
+        })
+    })
 })
