@@ -1,5 +1,3 @@
-
-
 const racesPic = document.getElementById('races-pic')
 const infoSearch = document.getElementById('info-search')
 const infoResult = document.getElementById('info-result')
@@ -7,7 +5,6 @@ const spellsPic = document.getElementById('spells-pic')
 const spellSelect = document.getElementById('spell-select')
 const monsterPic = document.getElementById('monsters-pic')
 const equipPic = document.getElementById('equip-pic')
-
 
 let group=""
 
@@ -25,69 +22,62 @@ const traitSearch = (thing) => {
 
 const specSearch = (thing) => {
     infoResult.innerHTML = ``
-    axios.get(`http://www.dnd5eapi.co/api/${group}/${thing}`)
+    axios.get(`http://www.dnd5eapi.co/api/races/${thing}`)
     .then((res) => {
+        const {name, speed, alignment, age, size_description, traits} = res.data
         infoResult.innerHTML = `
-        <h3>${res.data.name}</h3>
-        <h4>Speed: ${res.data.speed}</h4>
-        <p>Alignment: ${res.data.alignment}</p>
-        <p>Age: ${res.data.age}</p>
-        <p>Size: ${res.data.size_description}</p>
+        <h3>${name}</h3>
+        <h4>Speed: ${speed}</h4>
+        <p>Alignment: ${alignment}</p>
+        <p>Age: ${age}</p>
+        <p>Size: ${size_description}</p>
         <div id='trait-desc'></div>`
-        let traits = document.createElement('ul')
-        traits.textContent = 'Traits:'
+        let raceTraits = document.createElement('ul')
+        raceTraits.textContent = 'Traits:'
         for(let i = 0; i < res.data.traits.length; i++){
             let trait = document.createElement('li')
-            trait.innerHTML = `<p onclick="traitSearch('${res.data.traits[i].index}')">${res.data.traits[i].name}</p>`
-            traits.appendChild(trait)
+            trait.innerHTML = `<p onclick="traitSearch('${traits[i].index}')">${traits[i].name}</p>`
+            raceTraits.appendChild(trait)
         }
-        infoResult.appendChild(traits)
-        console.log(res.data)
+        infoResult.appendChild(raceTraits)
     })
 }
 
 racesPic.addEventListener('click', () => {
     infoSearch.innerHTML = ``
     infoResult.innerHTML=``
-    group = 'races'
-    axios.get(`http://www.dnd5eapi.co/api/${group}`)
+    axios.get(`http://www.dnd5eapi.co/api/races`)
     .then((res) => {
         const {results} = res.data
         results.forEach((ele, i) => {
             let info = document.createElement('div')
             info.innerHTML = `
-            <h4 class='search-res' onclick="specSearch('${results[i].index}')">${results[i].name}</h4>
-            `
+            <h4 class='search-res' onclick="specSearch('${results[i].index}')">${results[i].name}</h4>`
             infoSearch.appendChild(info)
         })
     })
 })
 
 const spellSearch = (spell) => {
-    // console.log(level)
     infoResult.innerHTML = ``
     axios.get(`http://www.dnd5eapi.co/api/spells/${spell}`)
     .then((res) => {
-        // console.log(res.data)
         const {name, desc} = res.data
         console.log(name)
         let newSpell = document.createElement('div')
         newSpell.innerHTML = `
         <h3>${name}</h3>
-        <p>Description: ${desc}</p>
-        `
+        <p>Description: ${desc}</p>`
         infoResult.appendChild(newSpell)
     })
 }
 
 spellsPic.addEventListener('click', () => {
-    group = 'spells'
     infoSearch.innerHTML = ``
     infoResult.innerHTML=``
     let spellLevel = document.getElementById('spell-level').value
     axios.get(`http://www.dnd5eapi.co/api/spells/?level=${spellLevel}`)
     .then((res) => {
-        // console.log(res.data)
         const {results} = res.data
         results.forEach((ele, i) => {
             let info = document.createElement('div')
@@ -103,17 +93,16 @@ spellsPic.addEventListener('click', () => {
 const monstSearch = (monster) => {
     axios.get(`http://www.dnd5eapi.co/api/monsters/${monster}`)
     .then((res) => {
-        console.log(res.data)
+        const {name, size, type, alignment, languages, armor_class, challenge_rating, xp} = res.data
         infoResult.innerHTML = `
-        <h3>${res.data.name}</h3>
-        <h4>Size: ${res.data.size}</h4>
-        <p>Type: ${res.data.type}</p>
-        <p>Alignment: ${res.data.alignment}</p>
-        <p>Languages: ${res.data.languages}</p>
-        <p>Armor Class: ${res.data.armor_class}</p>
-        <p>Challenge Rating: ${res.data.challenge_rating}</p>
-        <p>XP: ${res.data.xp}</p>
-        `
+        <h3>${name}</h3>
+        <h4>Size: ${size}</h4>
+        <p>Type: ${type}</p>
+        <p>Alignment: ${alignment}</p>
+        <p>Languages: ${languages}</p>
+        <p>Armor Class: ${armor_class}</p>
+        <p>Challenge Rating: ${challenge_rating}</p>
+        <p>XP: ${xp}</p>`
         let actions = document.createElement('ul')
         actions.textContent = 'Actions:'
         for(let i = 0; i < res.data.actions.length; i++){
@@ -145,7 +134,6 @@ const equipSearch = (equipment) => {
     infoResult.innerHTML = ``
     axios.get(`http://www.dnd5eapi.co/api/equipment/${equipment}`)
     .then((res) => {
-        // console.log(res.data)
         const {name, equipment_category} = res.data
         console.log(name)
         let newItem = document.createElement('div')

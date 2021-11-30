@@ -2,8 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const bcrypt = require('bcrypt')
-// const session = require('express-session')
-// const pgSession = require('connect-pg-simple')(session)
 
 app.use(express.json());
 app.use(cors());
@@ -20,16 +18,6 @@ const sqlize = new Sequelize(CONNECTION_STRING, {
         }
     }
 });
-
-// var sessionOptions = {
-//     secret: "secret",
-//     resave : false,
-//     saveUninitialized : true,
-//     cookie:{
-//         secure: true
-//     }
-//     };
-// app.use(session(sessionOptions));
 
 module.exports = {
     diceRollScores: (req, res) => {
@@ -85,7 +73,6 @@ module.exports = {
 
         create table characters(
             character_id SERIAL PRIMARY KEY,
-            user_id INTEGER REFERENCES users(user_id),
             name VARCHAR(100),
             race VARCHAR(50),
             class VARCHAR(50),
@@ -113,7 +100,7 @@ module.exports = {
               2, 17, 11, 13, 8, 17, 12, 'Intimidation, Athletics, Persuasion, Performance', 'Orc, Common',
               'Vicious Mockery, Prestidigitation, Minor Illusion'),
 
-              (1, 'Clank', 'Goblin', 'Cleric', 'Noble', 'Chaotic-Neutral', 2, 12, 12, 14, 12, 10, 13,
+              (1, 'Gobbo', 'Goblin', 'Cleric', 'Noble', 'Chaotic-Neutral', 2, 12, 12, 14, 12, 10, 13,
               'Persuasion, Religion, Medicine, Arcana', 'Common, Goblin', 'Guidance, Mage Hand');
         `).then(() => {
             console.log('DB seeded!')
@@ -122,7 +109,6 @@ module.exports = {
     },
     register: (req, res) => {
         console.log('Registering User')
-        // console.log(req.body)
         const {username, password, email} = req.body
         const salt = bcrypt.genSaltSync(5)
         const passwordHash = bcrypt.hashSync(password, salt)
@@ -136,11 +122,9 @@ module.exports = {
             email
         }
         res.status(200).send(newUser)
-        // return passwordHash
     },
     login: (req, res) => {
         console.log('logging in')
-        // console.log(req.body)
         const{username, password} = req.body
         console.log(username, password)
         sqlize.query(`
@@ -148,7 +132,6 @@ module.exports = {
         WHERE username = '${username}';
         `)
         .then((dbRes) => {
-            // console.log(dbRes[0][0])
             const existingPassword = bcrypt.compareSync(password, dbRes[0][0].password)
             console.log(existingPassword)
             if(existingPassword === true){
@@ -157,21 +140,10 @@ module.exports = {
                 req.session.current_user = dbRes[0][0].user_id
                 console.log(req.session)
                 res.status(200).send(dbRes[0])
-                // res.redirect('/')
             }else{
                 res.status(400).send()
             }
         }).catch(err => console.log(err))
-    },
-    logout: (req, res) => {
-        req.session.destroy((err) => {
-            if(err){
-                console.log(err)
-            }
-            console.log('session destroyed')
-            // console.log(req.session)
-            res.sendStatus(200)
-        })
     },
     getChars: (req, res) => {
         console.log('get characters success')
