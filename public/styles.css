@@ -404,3 +404,10 @@ footer {
   .category-pic {
       width: 400px;
   }
+
+  #info-search {
+      background-color: green;
+      display: flex;
+      flex-direction: column;
+      padding:15px;
+  }

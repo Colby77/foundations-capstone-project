@@ -42,10 +42,13 @@ const intScore = document.getElementById('int-score')
 const strScore = document.getElementById('str-score')
 const wisScore = document.getElementById('wis-score')
 
-axios.get('/')
-.then((res) => {
-    console.log(res.data)
-})
+// axios.get('http://localhost:4004/')
+// .then((res) => {
+//     // if(res.data === false){
+//     //     alert('You must be logged in to save a character you create!')
+//     // }
+//     console.log(res.data)
+// })
 
 class Character{
     constructor(

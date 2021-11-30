@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const bcrypt = require('bcrypt')
+// const session = require('express-session')
+// const pgSession = require('connect-pg-simple')(session)
 
 app.use(express.json());
 app.use(cors());
@@ -18,6 +20,16 @@ const sqlize = new Sequelize(CONNECTION_STRING, {
         }
     }
 });
+
+// var sessionOptions = {
+//     secret: "secret",
+//     resave : false,
+//     saveUninitialized : true,
+//     cookie:{
+//         secure: true
+//     }
+//     };
+// app.use(session(sessionOptions));
 
 module.exports = {
     diceRollScores: (req, res) => {

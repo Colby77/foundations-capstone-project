@@ -54,7 +54,7 @@ const registerSubmitHandler = (e) => {
 
 const loginSubmitHandler = (e) => {
     e.preventDefault()
-    console.log('login-submit')
+    // console.log('login-submit')
 
     let username = document.querySelector('#login-username')
     let password = document.querySelector('#login-password')
