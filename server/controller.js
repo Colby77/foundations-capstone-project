@@ -94,13 +94,13 @@ module.exports = {
         INSERT INTO users(username, password, email)
         VALUES('login123', 'password', 'log@in');
 
-        INSERT INTO characters(user_id, name, race, class, background, alignment, prof_bonus,
+        INSERT INTO characters( name, race, class, background, alignment, prof_bonus,
              cha, con, dex, intl, str, wis, profs, langs, spells)
-             VALUES(1, 'Imsh', 'Half-Orc', 'Bard', 'Soldier', 'Chaotic-Good',
+             VALUES('Imsh', 'Half-Orc', 'Bard', 'Soldier', 'Chaotic-Good',
               2, 17, 11, 13, 8, 17, 12, 'Intimidation, Athletics, Persuasion, Performance', 'Orc, Common',
               'Vicious Mockery, Prestidigitation, Minor Illusion'),
 
-              (1, 'Gobbo', 'Goblin', 'Cleric', 'Noble', 'Chaotic-Neutral', 2, 12, 12, 14, 12, 10, 13,
+              ('Gobbo', 'Goblin', 'Cleric', 'Noble', 'Chaotic-Neutral', 2, 12, 12, 14, 12, 10, 13,
               'Persuasion, Religion, Medicine, Arcana', 'Common, Goblin', 'Guidance, Mage Hand');
         `).then(() => {
             console.log('DB seeded!')
@@ -136,8 +136,6 @@ module.exports = {
             console.log(existingPassword)
             if(existingPassword === true){
                 console.log('password check worked')
-                req.session.isAuth = true
-                req.session.current_user = dbRes[0][0].user_id
                 console.log(req.session)
                 res.status(200).send(dbRes[0])
             }else{
